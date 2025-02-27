@@ -22,12 +22,14 @@ import net.minecraft.resources.ResourceLocation;
 import java.io.FileNotFoundException;
 
 public class EyesOverlayFeatureRenderer<T extends LivingEntityRenderState, M extends EntityModel<T>> extends RenderLayer<T, M> {
-	protected final EntityModel<T> model;
+	protected final M model;
+	protected final M babyModel;
 	protected final ResourceLocation texture;
 	protected final boolean emissive;
-	public EyesOverlayFeatureRenderer(RenderLayerParent<T, M> context, EntityModel<T> model, ResourceLocation texture, boolean emissive) {
+	public EyesOverlayFeatureRenderer(RenderLayerParent<T, M> context, M model, M babyModel, ResourceLocation texture, boolean emissive) {
 		super(context);
 		this.model = model;
+		this.babyModel = babyModel;
 		this.texture = texture;
 		this.emissive = emissive;
 	}
@@ -40,14 +42,15 @@ public class EyesOverlayFeatureRenderer<T extends LivingEntityRenderState, M ext
 	}
 	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, T livingEntityRenderState, float f, float g) {
 		if (!livingEntityRenderState.isInvisible) {
-			this.model.setupAnim(livingEntityRenderState);
+			M model = livingEntityRenderState.isBaby ? this.babyModel : this.model;
+			model.setupAnim(livingEntityRenderState);
 			RenderType renderType = null;
 			try {
 				renderType = this.getRenderLayer(livingEntityRenderState);
 			} catch (FileNotFoundException ignored) {}
 			if (renderType != null) {
 				VertexConsumer vertexConsumer = multiBufferSource.getBuffer(renderType);
-				this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+				model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
 			}
 		}
 	}

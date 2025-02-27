@@ -28,7 +28,7 @@ public abstract class SheepEntityRendererMixin extends LivingEntityRenderer<Shee
 	}
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void fleecifer$init(EntityRendererProvider.Context context, CallbackInfo ci) {
-		this.addLayer(new SheepEyesOverlayFeatureRenderer<>(this, new SheepModel(context.getModelSet().bakeLayer(Models.sheepEyes)), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/entity/sheep/sheep_eyes.png"), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/textured_entity/sheep/herobrine_eyes.png"), false));
-		this.addLayer(new SheepEyesOverlayFeatureRenderer<>(this, new SheepModel(context.getModelSet().bakeLayer(Models.sheepEyesEmissive)), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/entity/sheep/sheep_eyes_emissive.png"), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/textured_entity/sheep/herobrine_eyes_emissive.png"), true));
+		this.addLayer(new SheepEyesOverlayFeatureRenderer<>(this, new SheepModel(context.getModelSet().bakeLayer(Models.sheepEyes)), new SheepModel(context.getModelSet().bakeLayer(Models.babySheepEyes)), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/entity/sheep/sheep_eyes.png"), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/textured_entity/sheep/herobrine_eyes.png"), false));
+		this.addLayer(new SheepEyesOverlayFeatureRenderer<>(this, new SheepModel(context.getModelSet().bakeLayer(Models.sheepEyesEmissive)), new SheepModel(context.getModelSet().bakeLayer(Models.babySheepEyesEmissive)), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/entity/sheep/sheep_eyes_emissive.png"), ResourceLocation.fromNamespaceAndPath("fleecifer", "textures/textured_entity/sheep/herobrine_eyes_emissive.png"), true));
 	}
 }

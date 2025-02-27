@@ -5,7 +5,7 @@
     License: GNU LGPLv3
 */
 
-package com.mclegoman.fleecifer.client.util;
+package com.mclegoman.fleecifer.loader_specific.client;
 
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.ResourceLocation;

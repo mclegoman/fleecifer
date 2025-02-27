@@ -8,6 +8,7 @@
 package com.mclegoman.fleecifer.client.model;
 
 import net.minecraft.client.model.QuadrupedModel;
+import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -15,10 +16,15 @@ import net.minecraft.resources.ResourceLocation;
 
 public class Models {
 	public static final ModelLayerLocation sheepEyes = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("fleecifer", "sheep"), "eyes");
+	public static final ModelLayerLocation babySheepEyes = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("fleecifer", "sheep"), "baby_eyes");
 	public static final ModelLayerLocation sheepEyesEmissive = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("fleecifer", "sheep"), "eyes_emissive");
+	public static final ModelLayerLocation babySheepEyesEmissive = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("fleecifer", "sheep"), "baby_eyes_emissive");
 	public static void init() {
 		EntityModelLayerRegistry.registerModelLayer(sheepEyes, () -> getSheepTexturedModelData(new CubeDeformation(0.001F)));
 		EntityModelLayerRegistry.registerModelLayer(sheepEyesEmissive, () -> getSheepTexturedModelData(new CubeDeformation(0.002F)));
+
+		EntityModelLayerRegistry.registerModelLayer(babySheepEyes, () -> getSheepTexturedModelData(new CubeDeformation(0.001F)).apply(SheepModel.BABY_TRANSFORMER));
+		EntityModelLayerRegistry.registerModelLayer(babySheepEyesEmissive, () -> getSheepTexturedModelData(new CubeDeformation(0.002F)).apply(SheepModel.BABY_TRANSFORMER));
 	}
 	public static LayerDefinition getSheepTexturedModelData(CubeDeformation dilation) {
 		MeshDefinition modelData = QuadrupedModel.createBodyMesh(12, dilation);

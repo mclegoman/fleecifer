@@ -7,7 +7,7 @@
 
 package com.mclegoman.fleecifer.client.renderer;
 
-import com.mclegoman.fleecifer.client.util.PerspectiveCompat;
+import com.mclegoman.fleecifer.loader_specific.client.PerspectiveCompat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
@@ -20,8 +20,8 @@ import java.io.FileNotFoundException;
 
 public class SheepEyesOverlayFeatureRenderer<T extends LivingEntityRenderState, M extends EntityModel<T>> extends EyesOverlayFeatureRenderer<T, M> {
 	protected final ResourceLocation herobrineTexture;
-	public SheepEyesOverlayFeatureRenderer(RenderLayerParent<T, M> context, EntityModel<T> model, ResourceLocation texture, ResourceLocation herobrineTexture, boolean emissive) {
-		super(context, model, texture, emissive);
+	public SheepEyesOverlayFeatureRenderer(RenderLayerParent<T, M> context, M model, M babyModel, ResourceLocation texture, ResourceLocation herobrineTexture, boolean emissive) {
+		super(context, model, babyModel, texture, emissive);
 		this.herobrineTexture = herobrineTexture;
 	}
 

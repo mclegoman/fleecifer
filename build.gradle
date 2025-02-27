@@ -66,16 +66,16 @@ forgix {
     neoforge {
         projectName = "neoforge"
         jarLocation = "build/libs/${project.archives_name}-neoforge-${project.version}.jar"
-        additionalRelocate "com.mclegoman.fleecifer", "neoforge.com.mclegoman.fleecifer"
+        additionalRelocate "com.mclegoman.fleecifer.loader_specific", "com.mclegoman.fleecifer.loader_specific.neoforge"
     }
     quilt {
         projectName = "quilt"
         jarLocation = "build/libs/${project.archives_name}-quilt-${project.version}.jar"
-        additionalRelocate "com.mclegoman.fleecifer", "quilt.com.mclegoman.fleecifer"
+        additionalRelocate "com.mclegoman.fleecifer.loader_specific", "com.mclegoman.fleecifer.loader_specific.quilt"
     }
     fabric {
         projectName = "fabric"
         jarLocation = "build/libs/${project.archives_name}-fabric-${project.version}.jar"
-        additionalRelocate "com.mclegoman.fleecifer", "fabric.com.mclegoman.fleecifer"
+        additionalRelocate "com.mclegoman.fleecifer.loader_specific", "com.mclegoman.fleecifer.loader_specific.fabric"
     }
 }
