@@ -1,0 +1,63 @@
+plugins {
+	id "fabric-loom" version "1.8-SNAPSHOT"
+	id "legacy-looming" version "1.8-SNAPSHOT"
+	id "maven-publish"
+}
+
+base.archivesName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+repositories {}
+
+loom {
+}
+
+legacyLooming {
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings(legacy.yarn(project.minecraft_version, project.yarn_build))
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.legacyfabric.legacy-fabric-api:legacy-fabric-api:1.11.1+1.12.2"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = "UTF-8"
+
+	if (JavaVersion.current().isJava9Compatible()) {
+		it.options.release = 8
+	}
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+
+	withSourcesJar()
+}
+
+jar {
+	from("licence") {
+		rename { "${it}_${base.archivesName.get()}" }
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+	}
+}
