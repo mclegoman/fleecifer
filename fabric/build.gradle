@@ -25,8 +25,8 @@ configurations {
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
     // We ideally want this to not be required, currently the only thing that 'needs' fabric api is assets/. (we attach a resource pack alongside for non-fabric-api users)
-    //modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
-    modImplementation fileTree(dir: 'libs', include: '*.jar')
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
+    modCompileOnly fileTree(dir: 'libs', include: '*.jar')
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }

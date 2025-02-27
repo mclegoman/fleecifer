@@ -1,7 +1,7 @@
 /*
     Fleecifer
-    Contributor(s): MCLegoMan
-    Github: https://github.com/MCLegoMan/Fleecifer
+    Contributor(s): dannytaylor
+    Github: https://github.com/mclegoman/fleecifer
     License: GNU LGPLv3
 */
 

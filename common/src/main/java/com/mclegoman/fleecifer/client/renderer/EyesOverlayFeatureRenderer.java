@@ -1,7 +1,7 @@
 /*
     Fleecifer
-    Contributor(s): MCLegoMan
-    Github: https://github.com/MCLegoMan/Fleecifer
+    Contributor(s): dannytaylor
+    Github: https://github.com/mclegoman/fleecifer
     License: GNU LGPLv3
 */
 
@@ -9,15 +9,17 @@ package com.mclegoman.fleecifer.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+
+import java.io.FileNotFoundException;
 
 public class EyesOverlayFeatureRenderer<T extends LivingEntityRenderState, M extends EntityModel<T>> extends RenderLayer<T, M> {
 	protected final EntityModel<T> model;
@@ -29,7 +31,8 @@ public class EyesOverlayFeatureRenderer<T extends LivingEntityRenderState, M ext
 		this.texture = texture;
 		this.emissive = emissive;
 	}
-	protected RenderType getRenderLayer(T entity) {
+	protected RenderType getRenderLayer(T entity) throws FileNotFoundException {
+		Minecraft.getInstance().getResourceManager().getResourceOrThrow(this.getTexture(entity));
 		return this.emissive ? RenderType.eyes(this.getTexture(entity)) : RenderType.entityCutoutNoCull(this.getTexture(entity));
 	}
 	protected ResourceLocation getTexture(T entity) {
@@ -38,8 +41,14 @@ public class EyesOverlayFeatureRenderer<T extends LivingEntityRenderState, M ext
 	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, T livingEntityRenderState, float f, float g) {
 		if (!livingEntityRenderState.isInvisible) {
 			this.model.setupAnim(livingEntityRenderState);
-			VertexConsumer vertexConsumer = multiBufferSource.getBuffer(this.getRenderLayer(livingEntityRenderState));
-			this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+			RenderType renderType = null;
+			try {
+				renderType = this.getRenderLayer(livingEntityRenderState);
+			} catch (FileNotFoundException ignored) {}
+			if (renderType != null) {
+				VertexConsumer vertexConsumer = multiBufferSource.getBuffer(renderType);
+				this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+			}
 		}
 	}
 }

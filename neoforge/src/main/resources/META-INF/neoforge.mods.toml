@@ -7,22 +7,22 @@ license = "LGPL-3.0-or-later"
 modId = "fleecifer"
 version = "${version}"
 displayName = "Fleecifer"
-displayURL = "https://github.com/MCLegoMan/fleecifer"
+displayURL = "https://github.com/mclegoman/fleecifer"
 logoFile = "icon.png"
-authors = "MCLegoMan"
+authors = "dannytaylor"
 description = '''Turns sheep hostile...'''
 
 [[dependencies.fleecifer]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.3,)"
+versionRange = "[21.4,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.fleecifer]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.3,)"
+versionRange = "[1.21.4,)"
 ordering = "NONE"
 side = "BOTH"
 

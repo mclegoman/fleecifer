@@ -8,12 +8,12 @@
       "name": "Fleecifer",
       "description": "Turns sheep hostile...",
       "contributors": {
-        "MCLegoMan": "Author"
+        "dannytaylor": "Author"
       },
       "contact": {
-        "homepage": "https://github.com/MCLegoMan/fleecifer",
-        "issues": "https://github.com/MCLegoMan/fleecifer/issues",
-        "sources": "https://github.com/MCLegoMan/fleecifer/"
+        "homepage": "https://github.com/mclegoman/fleecifer",
+        "issues": "https://github.com/mclegoman/fleecifer/issues",
+        "sources": "https://github.com/mclegoman/fleecifer/"
       },
       "icon": "assets/fleecifer/icon.png"
     },
@@ -25,7 +25,7 @@
       },
       {
         "id": "minecraft",
-        "version": "~1.21.3"
+        "version": "~1.21.4"
       }
     ]
   },
