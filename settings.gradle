@@ -1,16 +1,25 @@
 pluginManagement {
-    repositories {
-        maven { url "https://maven.quiltmc.org/repository/release" }
-        maven { url "https://maven.fabricmc.net/" }
-        maven { url "https://maven.neoforged.net/releases" }
-        maven { url "https://maven.architectury.dev/" }
-        gradlePluginPortal()
-    }
+	repositories {
+		maven {
+			name = 'Quilt Release'
+			url = 'https://maven.quiltmc.org/repository/release'
+		}
+		maven {
+			name = 'Quilt Snapshot'
+			url = 'https://maven.quiltmc.org/repository/snapshot'
+		}
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		maven {
+			name = 'Ornithe Releases'
+			url = 'https://maven.ornithemc.net/releases'
+		}
+		maven {
+			name = 'Ornithe Snapshots'
+			url = 'https://maven.ornithemc.net/snapshots'
+		}
+		gradlePluginPortal()
+	}
 }
-
-rootProject.name = 'fleecifer'
-
-include 'common'
-include 'quilt'
-include 'fabric'
-include 'neoforge'

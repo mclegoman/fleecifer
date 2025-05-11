@@ -1,0 +1,29 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "${group}",
+		"id": "fleecifer",
+		"version": "${version}",
+		"metadata": {
+			"name": "Fleecifer",
+			"description": "Turns sheep hostile...",
+			"contributors": {
+				"dannytaylor": "Developer"
+			},
+			"contact": {
+				"homepage": "https://mclegoman.com/",
+				"issues": "https://github.com/legotaylor/fleecifer/issues",
+				"sources": "https://github.com/legotaylor/fleecifer"
+			},
+			"icon": "assets/fleecifer/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.19.1"
+			}
+		]
+	},
+	"mixin": "fleecifer.mixins.json"
+}

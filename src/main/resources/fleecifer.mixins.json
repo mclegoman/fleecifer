@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.mclegoman.fleecifer.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"SheepEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
