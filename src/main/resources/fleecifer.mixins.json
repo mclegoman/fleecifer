@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mclegoman.fleecifer.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "SheepEntityMixin"
+  ],
+  "client": [
+    "QuadrupedModelAccessor",
+    "SheepRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "fleecifer.mixins-refmap.json"
+}

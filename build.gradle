@@ -1,0 +1,91 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
+version = '1.2.2+1.16.5-forge'
+group = 'com.mclegoman'
+archivesBaseName = 'fleecifer'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+compileJava {
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+}
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+minecraft {
+
+    mappings channel: 'official', version: '1.16.5'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            arg "-mixin.config=fleecifer.mixins.json"
+            mods {
+                fleecifer {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run_server')
+            arg "-mixin.config=fleecifer.mixins.json"
+            mods {
+                fleecifer {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+dependencies {
+
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
+
+    implementation fileTree('libs') { include '*.jar' }
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+}
+
+mixin {
+    add sourceSets.main, "fleecifer.mixins-refmap.json"
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "fleecifer",
+                "Specification-Vendor": "mclegoman",
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"mclegoman",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+                "TweakOrder": 0,
+                "MixinConfigs" : "fleecifer.mixins.json"
+        ])
+    }
+}
+
+
+jar.finalizedBy('reobfJar') 
+

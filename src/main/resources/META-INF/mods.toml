@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+issueTrackerURL = "https://github.com/mclegoman/fleecifer/issues"
+license = "LGPL-3.0-or-later"
+
+[[mods]]
+modId = "fleecifer"
+version = "1.2.2+1.16.5-forge"
+displayName = "Fleecifer"
+displayURL = "https://github.com/mclegoman/fleecifer"
+logoFile = "icon.png"
+authors = "dannytaylor"
+description = '''Turns sheep hostile...'''
+
+[[dependencies.fleecifer]]
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.fleecifer]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5,)"
+ordering = "NONE"
+side = "BOTH"
