@@ -26,11 +26,11 @@ public class Models {
 		EntityModelLayerRegistry.registerModelLayer(babySheepEyes, () -> getSheepTexturedModelData(new CubeDeformation(0.001F)).apply(SheepModel.BABY_TRANSFORMER));
 		EntityModelLayerRegistry.registerModelLayer(babySheepEyesEmissive, () -> getSheepTexturedModelData(new CubeDeformation(0.002F)).apply(SheepModel.BABY_TRANSFORMER));
 	}
-	public static LayerDefinition getSheepTexturedModelData(CubeDeformation dilation) {
-		MeshDefinition modelData = QuadrupedModel.createBodyMesh(12, dilation);
-		PartDefinition modelPartData = modelData.getRoot();
-		modelPartData.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -4.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, -8.0F));
-		modelPartData.addOrReplaceChild("body", CubeListBuilder.create().texOffs(28, 8).addBox(-4.0F, -10.0F, -7.0F, 8.0F, 16.0F, 6.0F), PartPose.offsetAndRotation(0.0F, 5.0F, 2.0F, 1.5707964F, 0.0F, 0.0F));
-		return LayerDefinition.create(modelData, 64, 32);
+	public static LayerDefinition getSheepTexturedModelData(CubeDeformation deformation) {
+		MeshDefinition meshDefinition = QuadrupedModel.createBodyMesh(12, false, true, deformation);
+		PartDefinition partDefinition = meshDefinition.getRoot();
+		partDefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-3.0F, -4.0F, -6.0F, 6.0F, 6.0F, 8.0F), PartPose.offset(0.0F, 6.0F, -8.0F));
+		partDefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(28, 8).addBox(-4.0F, -10.0F, -7.0F, 8.0F, 16.0F, 6.0F), PartPose.offsetAndRotation(0.0F, 5.0F, 2.0F, ((float)Math.PI / 2F), 0.0F, 0.0F));
+		return LayerDefinition.create(meshDefinition, 64, 32);
 	}
 }
